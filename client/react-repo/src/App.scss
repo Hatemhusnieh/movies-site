@@ -1,0 +1,24 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+.grid {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.1fr 0.1fr 1fr;
+  grid-template-areas:
+    'header'
+    'search-bar'
+    'content';
+
+  .header {
+    grid-area: header;
+  }
+  .search-box {
+    grid-area: search-bar;
+  }
+}
