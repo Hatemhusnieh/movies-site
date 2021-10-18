@@ -2,6 +2,8 @@
 *::after,
 *::before {
   box-sizing: border-box;
+  background-color: #332f2f;
+  color: #f1f1f1;
 }
 
 .grid {
@@ -9,16 +11,23 @@
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.1fr 0.1fr 1fr;
+  grid-template-rows: 10vh 10vh 10vh 70vh;
   grid-template-areas:
     'header'
-    'search-bar'
+    'searchBar'
+    'tab'
     'content';
 
   .header {
     grid-area: header;
   }
   .search-box {
-    grid-area: search-bar;
+    grid-area: searchBar;
+  }
+  .tab-group {
+    grid-area: tab;
+  }
+  .content {
+    grid-area: content;
   }
 }
