@@ -1,0 +1,22 @@
+.tab-group {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
+  list-style: none;
+
+  a {
+    text-decoration: none;
+    color: #f1f1f1;
+  }
+}
+
+.selected-tab {
+  color: goldenrod;
+  border-bottom: 1px solid goldenrod;
+
+  a {
+    text-decoration: none;
+    color: goldenrod;
+  }
+}
