@@ -37,19 +37,25 @@
 
     .text {
       width: 230px;
-      background-color: #272626;
+      background-color: #1e1d1d;
 
       h3 {
         font-size: 1rem;
-        width: 100%;
         overflow: hidden;
         white-space: nowrap;
+        text-overflow: ellipsis;
         margin: 0.2rem 0;
+        background-color: #ffd70000;
       }
 
       span {
-        font-size: 0.85rem;
+        display: block;
+        font-size: 0.75rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
         color: goldenrod;
+        background-color: #ffd70000;
       }
     }
   }
@@ -66,4 +72,7 @@
 }
 
 @media (min-width: 900px) {
+  .upcoming {
+    gap: 5%;
+  }
 }
