@@ -1,0 +1,40 @@
+.search-box {
+  margin: 0 auto;
+  width: 100%;
+
+  .search-container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    height: fit-content;
+    width: 80%;
+    gap: 0.3rem;
+    padding: 0.1rem;
+    background-color: #3e3d3d;
+
+    input {
+      border: none;
+      width: 90%;
+    }
+    span {
+      cursor: pointer;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .search-box {
+    margin-top: 5%;
+    .search-container {
+      width: 90%;
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .search-box {
+    margin-top: 15%;
+  }
+}

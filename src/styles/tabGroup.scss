@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: space-around;
+  justify-content: space-evenly;
   list-style: none;
+  font-size: 0.9rem;
 
   a {
     text-decoration: none;
@@ -18,5 +19,18 @@
   a {
     text-decoration: none;
     color: goldenrod;
+  }
+}
+
+@media (min-width: 600px) {
+  .tab-group {
+    font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .tab-group {
+    justify-content: flex-start;
+    gap: 3%;
   }
 }
