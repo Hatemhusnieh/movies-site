@@ -2,9 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import instance from '../../../API/axios';
 import '../../../styles/movies-list.scss';
+import { useHistory } from 'react-router-dom';
 
-function Upcoming() {
+function Upcoming(props) {
   const [data, setData] = useState();
+  const [id, setID] = useState(null);
+  const history = useHistory();
 
   useEffect(() => {
     async function api() {
@@ -28,13 +31,18 @@ function Upcoming() {
     api();
   }, []);
 
+  useEffect(() => {
+    props.setMovieID(id);
+    if (id) history.push(`/profile/${id}`);
+  }, [id]);
+
   return (
     <div className="upcoming">
       {data &&
         data.map((elm) => {
           return (
             <div className="movie-card" key={elm.title}>
-              <div className="img">
+              <div className="img" onClick={() => setID(elm.id)}>
                 <img src={elm.poster} alt={elm.title} />
               </div>
               <div className="rating">{elm.rating}</div>
@@ -51,6 +59,7 @@ function Upcoming() {
 
 class Movie {
   constructor(data) {
+    this.id = data.id;
     this.title = data.original_title;
     this.poster = 'http://image.tmdb.org/t/p/w342' + data.poster_path;
     this.rating = data.vote_average;

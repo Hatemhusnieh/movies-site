@@ -15,6 +15,9 @@
     border-radius: 3%;
     box-shadow: 6px 6px 5px #2b2828, -6px -6px 5px #3b3636;
     .img {
+      :hover {
+        cursor: pointer;
+      }
       img {
         width: 230px;
         height: 285px;
