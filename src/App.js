@@ -9,10 +9,12 @@ import Upcoming from './component/tabs/tabs/Upcoming';
 import Popular from './component/tabs/tabs/Popular'
 import TopRated from './component/tabs/tabs/TopRated'
 import SearchResults from './component/SearchResults';
+import MovieProfile from './component/MovieProfile';
 
 
 function App() {
   const [results, setResults] = useState({})
+  const [movieID, setMovieID] = useState(null)
 
   return (
     <div className="grid">
@@ -30,7 +32,7 @@ function App() {
             </Route>
 
             <Route exact path="/upcoming">
-              <Upcoming />
+              <Upcoming setMovieID={setMovieID} />
             </Route>
 
             <Route exact path="/popular">
@@ -43,6 +45,10 @@ function App() {
 
             <Route exact path="/search">
               <SearchResults data={results} />
+            </Route>
+
+            <Route exact path={`/profile/${movieID}`}>
+              <MovieProfile movieID={movieID} />
             </Route>
           </Switch>
         </div>
