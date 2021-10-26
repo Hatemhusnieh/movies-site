@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import '../styles/searchBox.scss';
-import instance from '../API/axios';
+import '../../styles/searchBox.scss';
+import instance from '../../API/axios';
 import { BsSearch } from 'react-icons/bs';
 import { useHistory } from 'react-router-dom';
 
@@ -56,6 +56,7 @@ function SearchBox(props) {
 
 class Movie {
   constructor(data) {
+    this.id = data.id;
     this.title = data.original_title;
     this.poster = 'http://image.tmdb.org/t/p/w342' + data.poster_path;
     this.rating = data.vote_average;

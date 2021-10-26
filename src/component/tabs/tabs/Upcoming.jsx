@@ -15,7 +15,7 @@ function Upcoming(props) {
         api_key: process.env.REACT_APP_MOVIE_DB_KEY,
       };
       const raw = await instance.get(`/movie/upcoming`, { params });
-      const raw2 = await instance.get(`genre/movie/list`, { params });
+      const raw2 = await instance.get(`/genre/movie/list`, { params });
       const moviesList = raw.data.results.map((data) => new Movie(data));
       moviesList.forEach((movie, idx) =>
         movie.genres.forEach((gen, ix) => (moviesList[idx].genres[ix] = _getGenre(gen, raw2.data.genres)))
@@ -45,7 +45,18 @@ function Upcoming(props) {
               <div className="img" onClick={() => setID(elm.id)}>
                 <img src={elm.poster} alt={elm.title} />
               </div>
-              <div className="rating">{elm.rating}</div>
+              <div
+                className="rating"
+                style={
+                  elm.rating > 7
+                    ? { borderColor: 'green' }
+                    : elm.rating > 6.3
+                    ? { borderColor: '#e7c019' }
+                    : { borderColor: 'red' }
+                }
+              >
+                {elm.rating}
+              </div>
               <div className="text">
                 <h3>{elm.title}</h3>
                 <span>{elm.genres.join(', ')}</span>

@@ -2,9 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import instance from '../../../API/axios';
 import '../../../styles/movies-list.scss';
+import { useHistory } from 'react-router-dom';
 
-function Upcoming() {
+function Popular(props) {
   const [data, setData] = useState();
+  const [id, setID] = useState(null);
+  const history = useHistory();
 
   useEffect(() => {
     async function api() {
@@ -12,7 +15,7 @@ function Upcoming() {
         api_key: process.env.REACT_APP_MOVIE_DB_KEY,
       };
       const raw = await instance.get(`/movie/popular`, { params });
-      const raw2 = await instance.get(`genre/movie/list`, { params });
+      const raw2 = await instance.get(`/genre/movie/list`, { params });
       const moviesList = raw.data.results.map((data) => new Movie(data));
       moviesList.forEach((movie, idx) =>
         movie.genres.forEach((gen, ix) => (moviesList[idx].genres[ix] = _getGenre(gen, raw2.data.genres)))
@@ -28,16 +31,32 @@ function Upcoming() {
     api();
   }, []);
 
+  useEffect(() => {
+    props.setMovieID(id);
+    if (id) history.push(`/profile/${id}`);
+  }, [id]);
+
   return (
     <div className="upcoming">
       {data &&
         data.map((elm) => {
           return (
             <div className="movie-card" key={elm.title}>
-              <div className="img">
+              <div className="img" onClick={() => setID(elm.id)}>
                 <img src={elm.poster} alt={elm.title} />
               </div>
-              <div className="rating">{elm.rating}</div>
+              <div
+                className="rating"
+                style={
+                  elm.rating > 7
+                    ? { borderColor: 'green' }
+                    : elm.rating > 6.3
+                    ? { borderColor: '#e7c019' }
+                    : { borderColor: 'red' }
+                }
+              >
+                {elm.rating}
+              </div>
               <div className="text">
                 <h3>{elm.title}</h3>
                 <span>{elm.genres.join(', ')}</span>
@@ -51,6 +70,7 @@ function Upcoming() {
 
 class Movie {
   constructor(data) {
+    this.id = data.id;
     this.title = data.original_title;
     this.poster = 'http://image.tmdb.org/t/p/w342' + data.poster_path;
     this.rating = data.vote_average;
@@ -60,4 +80,4 @@ class Movie {
   }
 }
 
-export default Upcoming;
+export default Popular;
